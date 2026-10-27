@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>Stop Bullying - MI Al-Kahfi Purbasana</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Nunito & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2563eb',
+                            teal: '#0d9488',
+                            orange: '#f97316',
+                            yellow: '#f59e0b',
+                            purple: '#8b5cf6',
+                            pink: '#ec4899'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(37, 99, 235, 0.8), 0 0 40px rgba(249, 115, 22, 0.4); }
+        }
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes waveAnimation {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(14deg); }
+            40% { transform: rotate(-8deg); }
+            60% { transform: rotate(14deg); }
+            80% { transform: rotate(-4deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .animate-glow {
+            animation: pulseGlow 2.5s infinite;
+        }
+        .animate-bounce-slow {
+            animation: bounceSlow 2s ease-in-out infinite;
+        }
+        .wave-hand {
+            display: inline-block;
+            animation: waveAnimation 2s infinite;
+            transform-origin: 70% 70%;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Smooth Screen Transition */
+        .page-transition {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .hide-page {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .show-page {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        /* Background Pattern */
+        .bg-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-pattern font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-brand-yellow selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- SPLASH / WELCOME SCREEN (Tampilan Awal)     -->
+    <!-- ========================================== -->
+    <div id="splash-screen" class="page-transition show-page min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
+        
+        <!-- Decorative Background Animated Elements -->
+        <div class="absolute -top-12 -left-12 w-64 h-64 bg-yellow-400 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+        <div class="absolute -bottom-12 -right-12 w-72 h-72 bg-pink-500 rounded-full blur-3xl opacity-30 animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-10 w-20 h-20 bg-teal-300 rounded-full blur-2xl opacity-40"></div>
+
+        <!-- Square/Hero Welcome Box -->
+        <div class="relative z-10 glass-card bg-white/95 rounded-3xl p-8 sm:p-12 max-w-md w-full text-center shadow-2xl border-4 border-white/80 animate-float">
+            
+            <!-- School Logo / Mascot Icon -->
+            <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-tr from-brand-blue to-teal-400 rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300 overflow-hidden">
+                <img src="logo.png" alt="Logo MI Al-Kahfi" class="w-full h-full object-cover" onerror="this.onerror=null; this.remove(); document.getElementById('fallback-icon').classList.remove('hidden');">
+                <i id="fallback-icon" class="fa-solid fa-graduation-cap text-4xl text-white hidden"></i>
+            </div>
+
+            <!-- School Title -->
+            <span class="inline-block px-4 py-1.5 bg-indigo-100 text-indigo-700 font-bold text-xs sm:text-sm rounded-full mb-3 tracking-wide uppercase">
+                <i class="fa-solid fa-shield-heart mr-1.5 text-brand-orange"></i> Madrasah Ramah Anak
+            </span>
+            
+            <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-800 tracking-tight leading-tight mb-2">
+                MI AL-KAHFI <br/><span class="text-brand-blue">PURBASANA</span>
+            </h1>
+
+            <p class="text-slate-600 text-sm sm:text-base mb-8 leading-relaxed font-medium">
+                Gerakan Bersama Stop Perundungan & Bullying di Lingkungan Madrasah.
+            </p>
+
+            <!-- Enter Button -->
+            <button onclick="enterMainDashboard()" class="w-full py-4 px-6 bg-gradient-to-r from-brand-orange via-amber-500 to-brand-yellow hover:from-amber-500 hover:to-brand-orange text-white font-bold text-lg rounded-2xl shadow-xl transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center space-x-3 group animate-glow">
+                <span>MLEBET</span>
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform duration-300"></i>
+            </button>
+
+            <div class="mt-6 text-xs text-slate-400 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-heart text-red-500"></i>
+                <span>Aman • Nyaman • Bahagia</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- MAIN DASHBOARD / MAIN PAGE                -->
+    <!-- ========================================== -->
+    <div id="main-dashboard" class="page-transition hide-page flex-col min-h-screen">
+        
+        <!-- Header / Navigation Bar -->
+        <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center text-white shadow-md">
+                        <img src="logo.png" alt="Logo MI Al-Kahfi" class="w-full h-full object-cover" onerror="this.onerror=null; this.remove(); document.getElementById('fallback-icon').classList.remove('hidden');">
+                    </div>
+                    <div>
+                        <h2 class="font-heading font-bold text-slate-800 text-sm sm:text-base leading-tight">MI AL-KAHFI PURBASANA</h2>
+                        <p class="text-xs text-brand-teal font-semibold">Kecamatan Tarub Kabupaten Tegal Provinsi Jawa Tengah</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <!-- Music/Sound Toggle Button -->
+                    <button onclick="toggleAudio()" id="audio-btn" class="p-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl transition-colors text-sm flex items-center space-x-1" title="Putar Musik Santai">
+                        <i class="fa-solid fa-volume-xmark" id="audio-icon"></i>
+                        <span class="hidden sm:inline text-xs font-semibold">Musik</span>
+                    </button>
+
+                    <!-- Back to Splash Button -->
+                    <button onclick="backToSplash()" class="px-4 py-2 bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-700 font-bold rounded-xl text-xs sm:text-sm transition-all duration-200 flex items-center space-x-1.5 border border-slate-200">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span class="hidden sm:inline">Awal</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Wrapper -->
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+            
+            <!-- Hero Campaign Banner -->
+            <section class="relative rounded-3xl bg-gradient-to-r from-blue-600 via-teal-500 to-emerald-500 text-white p-6 sm:p-10 shadow-xl overflow-hidden">
+                <!-- Background Graphic Element -->
+                <div class="absolute -right-10 -bottom-10 opacity-15">
+                    <i class="fa-solid fa-users text-[220px]"></i>
+                </div>
+
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <span class="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-extrabold tracking-wide uppercase">
+                        <span class="wave-hand mr-2">👋</span> Halo Siswa & siswi Hebat!
+                    </span>
+                    <h1 class="font-heading font-extrabold text-2xl sm:text-4xl leading-tight">
+                        Bersama Ciptakan Madrasah yang Aman, Nyaman & Bahagia!
+                    </h1>
+                    <p class="text-white/90 text-sm sm:text-base leading-relaxed">
+                        Di MI Al-Kahfi Purbasana, tidak ada tempat untuk perundungan. Mari saling menghargai, menyayangi, dan berteman tanpa membeda-bedakan.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <a href="#poster-section" class="px-5 py-2.5 bg-white text-brand-blue font-bold rounded-xl shadow-md hover:bg-slate-100 transition-all text-xs sm:text-sm flex items-center space-x-2">
+                            <i class="fa-solid fa-eye"></i>
+                            <span>Lihat Poster</span>
+                        </a>
+                        <a href="#deklarasi-section" class="px-5 py-2.5 bg-brand-yellow text-slate-900 font-bold rounded-xl shadow-md hover:bg-amber-400 transition-all text-xs sm:text-sm flex items-center space-x-2">
+                            <i class="fa-solid fa-file-signature"></i>
+                            <span>Isi Deklarasi</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ========================================== -->
+            <!-- POSTER UTAMA & GAMBAR ANIMASI (Interactive) -->
+            <!-- ========================================== -->
+            <section id="poster-section" class="space-y-6">
+                <div class="text-center max-w-2xl mx-auto">
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-800">
+                        Poster Digital Anti-Bullying
+                    </h2>
+                    <p class="text-slate-500 text-sm mt-1">
+                        Poster visual interaktif ajakan stop perundungan di MI Al-Kahfi Purbasana
+                    </p>
+                </div>
+
+                <!-- Main Poster Container Card -->
+                <div class="bg-gradient-to-br from-indigo-900 via-blue-900 to-slate-900 rounded-3xl p-6 sm:p-10 shadow-2xl text-white relative overflow-hidden border-4 border-indigo-200/20">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        
+                        <!-- Poster Visual (Left/Top) -->
+                        <div class="lg:col-span-6 flex flex-col items-center justify-center relative">
+                            
+                            <!-- Animated Mascot Graphic (SVG Visual) -->
+                            <div class="relative w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center shadow-inner">
+                                <span class="absolute top-3 left-3 bg-red-500 text-white font-black text-xs px-3 py-1 rounded-full animate-bounce-slow">
+                                    STOP BULLYING!
+                                </span>
+
+                                <!-- Animated SVG Illustration: Friends Together -->
+                                <svg class="w-full h-56 sm:h-64 my-2 mx-auto" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Sun/Glow Background -->
+                                    <circle cx="200" cy="150" r="100" fill="#FBBF24" fill-opacity="0.2" />
+                                    <circle cx="200" cy="150" r="70" fill="#38BDF8" fill-opacity="0.3" />
+
+                                    <!-- Kids/Friends Figures -->
+                                    <!-- Child 1 (Left - Boy) -->
+                                    <g class="animate-float" style="animation-delay: 0s;">
+                                        <!-- Head -->
+                                        <circle cx="130" cy="110" r="28" fill="#FDBA74"/>
+                                        <!-- Hair -->
+                                        <path d="M105 105C105 88 120 80 130 80C142 80 155 88 155 105C140 100 120 100 105 105Z" fill="#1E293B"/>
+                                        <!-- Smile Face -->
+                                        <circle cx="122" cy="110" r="3" fill="#1E293B"/>
+                                        <circle cx="138" cy="110" r="3" fill="#1E293B"/>
+                                        <path d="M125 122 Q130 128 135 122" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                                        <!-- Shirt -->
+                                        <path d="M100 190 C100 150 160 150 160 190 L160 210 L100 210 Z" fill="#3B82F6"/>
+                                        <path d="M120 142 L140 142 L135 170 L125 170 Z" fill="#2563EB"/>
+                                    </g>
+
+                                    <!-- Child 2 (Center - Girl Hijab / MI Student) -->
+                                    <g class="animate-float" style="animation-delay: 0.5s;">
+                                        <!-- Hijab Head -->
+                                        <path d="M170 115 C170 85 230 85 230 115 C230 145 230 155 170 155 Z" fill="#0D9488"/>
+                                        <!-- Inner Face -->
+                                        <ellipse cx="200" cy="118" rx="18" ry="20" fill="#FED7AA"/>
+                                        <!-- Eyes & Smile -->
+                                        <circle cx="193" cy="115" r="2.5" fill="#1E293B"/>
+                                        <circle cx="207" cy="115" r="2.5" fill="#1E293B"/>
+                                        <path d="M195 126 Q200 131 205 126" stroke="#1E293B" stroke-width="2" stroke-linecap="round" fill="none"/>
+                                        <!-- Dress -->
+                                        <path d="M172 150 L228 150 L238 210 L162 210 Z" fill="#14B8A6"/>
+                                    </g>
+
+                                    <!-- Child 3 (Right - Boy) -->
+                                    <g class="animate-float" style="animation-delay: 1s;">
+                                        <!-- Head -->
+                                        <circle cx="270" cy="110" r="28" fill="#FDBA74"/>
+                                        <!-- Curly Hair -->
+                                        <circle cx="255" cy="95" r="12" fill="#475569"/>
+                                        <circle cx="270" cy="90" r="12" fill="#475569"/>
+                                        <circle cx="285" cy="95" r="12" fill="#475569"/>
+                                        <!-- Smile Face -->
+                                        <circle cx="262" cy="110" r="3" fill="#1E293B"/>
+                                        <circle cx="278" cy="110" r="3" fill="#1E293B"/>
+                                        <path d="M265 122 Q270 128 275 122" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                                        <!-- Shirt -->
+                                        <path d="M240 190 C240 150 300 150 300 190 L300 210 L240 210 Z" fill="#F97316"/>
+                                    </g>
+
+                                    <!-- Heart Icon Floating -->
+                                    <path d="M200 65 C190 50 170 60 180 75 L200 90 L220 75 C230 60 210 50 200 65 Z" fill="#EF4444" class="animate-bounce-slow"/>
+                                    
+                                    <!-- Banner Text Inside SVG -->
+                                    <rect x="80" y="235" width="240" height="36" rx="18" fill="#FFFFFF" />
+                                    <text x="200" y="258" font-family="'Poppins', sans-serif" font-weight="800" font-size="14" fill="#0F172A" text-anchor="middle">
+                                        RANGKUL TEMAN, STOP BULLEYING!
+                                    </text>
+                                </svg>
+
+                                <div class="mt-2 text-xs text-amber-300 font-semibold italic">
+                                    "Berteman itu Indah, Saling Sayang Itu Berkah"
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Poster Slogan & Points (Right/Bottom) -->
+                        <div class="lg:col-span-6 space-y-5 text-left">
+                            <div class="inline-block px-3 py-1 bg-rose-500/30 text-rose-300 rounded-lg text-xs font-bold border border-rose-500/30">
+                                CAMPAIGN POSTER 2026
+                            </div>
+
+                            <h3 class="font-heading font-black text-2xl sm:text-3xl text-yellow-400 leading-snug">
+                                "Tunjukkan Prestasimu, Bukan Kekuatan Fisikmu untuk Menyakiti!"
+                            </h3>
+
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Setiap siswa di **MI Al-Kahfi Purbasana** berhak merasa aman dan bahagia saat belajar. Bullying atau perundungan tidak hanya menyakiti tubuh, tetapi juga perasaan.
+                            </p>
+
+                            <!-- Interactive Key Pillars -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                                <div class="bg-white/10 hover:bg-white/20 p-3.5 rounded-2xl border border-white/10 transition-colors">
+                                    <div class="text-brand-yellow font-bold text-sm flex items-center space-x-2">
+                                        <i class="fa-solid fa-hand-holding-heart text-base"></i>
+                                        <span>Kasih Sayang</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 mt-1">Saling peduli dan membantu sesama teman di sekolah.</p>
+                                </div>
+
+                                <div class="bg-white/10 hover:bg-white/20 p-3.5 rounded-2xl border border-white/10 transition-colors">
+                                    <div class="text-teal-300 font-bold text-sm flex items-center space-x-2">
+                                        <i class="fa-solid fa-comments text-base"></i>
+                                        <span>Bicara Baik</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 mt-1">Gunakan kata-kata santun yang memotivasi.</p>
+                                </div>
+
+                                <div class="bg-white/10 hover:bg-white/20 p-3.5 rounded-2xl border border-white/10 transition-colors">
+                                    <div class="text-pink-300 font-bold text-sm flex items-center space-x-2">
+                                        <i class="fa-solid fa-users-slash text-base"></i>
+                                        <span>Jangan Mengucilkan</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 mt-1">Ajak semua teman dalam bermain dan belajar.</p>
+                                </div>
+
+                                <div class="bg-white/10 hover:bg-white/20 p-3.5 rounded-2xl border border-white/10 transition-colors">
+                                    <div class="text-sky-300 font-bold text-sm flex items-center space-x-2">
+                                        <i class="fa-solid fa-bullhorn text-base"></i>
+                                        <span>Berani Lapor</span>
+                                    </div>
+                                    <p class="text-xs text-slate-300 mt-1">Laporkan pada guru jika melihat tindakan bullying.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- ========================================== -->
+            <!-- KENALI BENTUK-BENTUK BULLYING (Cards)      -->
+            <!-- ========================================== -->
+            <section class="space-y-6">
+                <div class="text-center max-w-2xl mx-auto">
+                    <span class="text-brand-blue font-bold text-xs uppercase tracking-wider">Edukasi Siswa</span>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-800">
+                        Kenali Bentuk Bullying
+                    </h2>
+                    <p class="text-slate-500 text-sm mt-1">
+                        Ketahui jenis-jenis perundungan agar kita bisa menghindarinya bersama!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Card 1: Bullying Fisik -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-red-500 group">
+                        <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-hand-fist"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-slate-800 mb-2">Bullying Fisik</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
+                            Tindakan menyakiti tubuh secara langsung seperti memukul, menendang, mendorong, atau merusak barang teman.
+                        </p>
+                        <span class="inline-block px-2.5 py-1 bg-red-50 text-red-700 text-xs font-semibold rounded-md">
+                            ⚠️ Dilarang Keras!
+                        </span>
+                    </div>
+
+                    <!-- Card 2: Bullying Verbal -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-amber-500 group">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-comment-slash"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-slate-800 mb-2">Bullying Verbal</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
+                            Menyakiti melalui kata-kata, seperti mengejek nama orang tua, mengolok-olok, membentak, atau menghina.
+                        </p>
+                        <span class="inline-block px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded-md">
+                            🗣️ Jaga Lisanmu
+                        </span>
+                    </div>
+
+                    <!-- Card 3: Bullying Sosial / Relasional -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-purple-500 group">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-user-group"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-slate-800 mb-2">Bullying Sosial</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
+                            Mengucilkan teman, menyebarkan rumor jahat, atau mengajak murid lain untuk tidak berteman dengannya.
+                        </p>
+                        <span class="inline-block px-2.5 py-1 bg-purple-50 text-purple-700 text-xs font-semibold rounded-md">
+                            🤝 Rangkul Semua
+                        </span>
+                    </div>
+
+                    <!-- Card 4: Cyberbullying -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-blue-500 group">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-slate-800 mb-2">Cyberbullying</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
+                            Menyakiti atau mengejek melalui media sosial, aplikasi pesan WhatsApp, atau media digital lainnya.
+                        </p>
+                        <span class="inline-block px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-md">
+                            📱 Bijak Berinternet
+                        </span>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- ========================================== -->
+            <!-- TIPS / LANGKAH JIKA MENGALAMI BULLYING      -->
+            <!-- ========================================== -->
+            <section class="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-3xl p-6 sm:p-8 border border-teal-100 shadow-sm">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="space-y-3 md:w-1/3">
+                        <span class="px-3 py-1 bg-teal-200 text-teal-800 font-bold text-xs rounded-full uppercase">Panduan Aksi</span>
+                        <h3 class="font-heading font-extrabold text-2xl text-slate-800">
+                            Apa yang Harus Dilakukan Jika Mengalami Bullying?
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-600">
+                            Jangan takut dan jangan dipendam sendiri. Kamu tidak sendirian!
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:w-2/3">
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-8 h-8 bg-brand-orange text-white rounded-full flex items-center justify-center font-bold mb-2 text-sm">1</div>
+                            <h4 class="font-bold text-slate-800 text-sm mb-1">Tetap Tenang & Tegas</h4>
+                            <p class="text-xs text-slate-500">Tunjukkan sikap tenang, katakan "Stop!" dengan mantap lalu tinggalkan lokasi.</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-8 h-8 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold mb-2 text-sm">2</div>
+                            <h4 class="font-bold text-slate-800 text-sm mb-1">Laporkan ke Guru / Orang Tua</h4>
+                            <p class="text-xs text-slate-500">Ceritakan langsung kepada Wali Kelas, Guru BK, atau orang tua di rumah.</p>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-8 h-8 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold mb-2 text-sm">3</div>
+                            <h4 class="font-bold text-slate-800 text-sm mb-1">Cari Teman Baik</h4>
+                            <p class="text-xs text-slate-500">Berkumpullah dengan teman-teman yang membawa dampak positif dan saling mendukung.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ========================================== -->
+            <!-- INTERACTIVE DEKLARASI SISWA                -->
+            <!-- ========================================== -->
+            <section id="deklarasi-section" class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-100">
+                <div class="max-w-xl mx-auto text-center space-y-4">
+                    <div class="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-inner">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-800">
+                        Komitmen & Deklarasi Siswa
+                    </h2>
+                    <p class="text-slate-500 text-sm">
+                        Ketik namamu di bawah untuk menerbitkan Sertifikat Komitmen **Duta Anti-Bullying MI Al-Kahfi Purbasana**!
+                    </p>
+
+                    <!-- Input Form -->
+                    <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                        <input type="text" id="student-name" placeholder="Tuliskan Nama Lengkapmu..." class="flex-grow px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm">
+                        <button onclick="generateCertificate()" class="px-6 py-3 bg-brand-blue hover:bg-blue-700 text-white font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-check-circle"></i>
+                            <span>Buat Sertifikat</span>
+                        </button>
+                    </div>
+
+                    <!-- Certificate Display Box (Hidden by Default) -->
+                    <div id="certificate-box" class="hidden mt-6 p-6 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-2xl border-2 border-amber-300 text-center relative overflow-hidden animate-bounce-slow">
+                        <div class="text-xs text-amber-700 font-bold uppercase tracking-widest mb-1">SURAT DEKLARASI SISWA</div>
+                        <h4 class="font-heading font-black text-xl text-slate-800" id="cert-name-display">NAMA SISWA</h4>
+                        <p class="text-xs text-slate-600 mt-2 italic">
+                            "Saya berjanji tidak akan melakukan bullying, selalu bersikap ramah, dan menjadi teman yang baik di MI Al-Kahfi Purbasana."
+                        </p>
+
+                        <div class="mt-4 pt-3 border-t border-amber-200/80 flex items-center justify-between text-[11px] text-slate-500">
+                            <span>📍 MI Al-Kahfi Purbasana</span>
+                            <span class="text-brand-teal font-bold">#StopBullying</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ========================================== -->
+            <!-- KINDNESS GENERATOR (Kutipan Kebaikan)     -->
+            <!-- ========================================== -->
+            <section class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl p-6 sm:p-8 text-white shadow-xl text-center space-y-4">
+                <i class="fa-solid fa-quote-left text-3xl opacity-50"></i>
+                <h3 id="quote-display" class="font-heading font-bold text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+                    "Senyuman dan kata-kata baikmu hari ini bisa mengubah hari seseorang menjadi lebih indah."
+                </h3>
+                <button onclick="nextQuote()" class="px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-xl text-xs font-bold transition-all border border-white/20 inline-flex items-center space-x-2">
+                    <i class="fa-solid fa-shuffle"></i>
+                    <span>Acak Kata Kebaikan</span>
+                </button>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-12">
+            <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+                <p class="font-semibold text-slate-300">MI AL-KAHFI PURBASANA &copy; 2026</p>
+                <p class="text-slate-500">Kecamatan Tarub Kabupaten Tegal Provinsi Jawa Tengah</p>
+                <p class="text-slate-500">Gerakan Sekolah Ramah Anak • Aman, Nyaman, dan Bahagia Bersama</p>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <!-- JavaScript Interactive Code -->
+    <script>
+        // Array of Kindness Quotes
+        const quotes = [
+            "\"Senyuman dan kata-kata baikmu hari ini bisa mengubah hari seseorang menjadi lebih indah.\"",
+            "\"Anak hebat tidak perlu menyakiti teman untuk terlihat kuat!\"",
+            "\"Kebaikan sekecil apa pun tidak akan pernah sia-sia.\"",
+            "\"Satu teman baik lebih berharga daripada seribu kemenangan dari mengejek.\"",
+            "\"Bicaralah dengan lembut, karena kata-kata cerminan dari hati yang mulia.\""
+        ];
+        let currentQuoteIndex = 0;
+
+        // Audio element simulation using Web Audio API or standard HTML Audio Synthesizer
+        let audioContext = null;
+        let isPlaying = false;
+        let oscillator = null;
+
+        // Switch Screen Function
+        function enterMainDashboard() {
+            const splash = document.getElementById('splash-screen');
+            const main = document.getElementById('main-dashboard');
+
+            splash.classList.remove('show-page');
+            splash.classList.add('hide-page');
+
+            setTimeout(() => {
+                splash.style.display = 'none';
+                main.classList.remove('hide-page');
+                main.classList.add('show-page');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 400);
+        }
+
+        function backToSplash() {
+            const splash = document.getElementById('splash-screen');
+            const main = document.getElementById('main-dashboard');
+
+            main.classList.remove('show-page');
+            main.classList.add('hide-page');
+
+            setTimeout(() => {
+                splash.style.display = 'flex';
+                splash.classList.remove('hide-page');
+                splash.classList.add('show-page');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 400);
+        }
+
+        // Generate Student Certificate
+        function generateCertificate() {
+            const input = document.getElementById('student-name');
+            const display = document.getElementById('cert-name-display');
+            const box = document.getElementById('certificate-box');
+
+            if (input.value.trim() === '') {
+                alert('Silakan tuliskan nama lengkapmu terlebih dahulu ya!');
+                return;
+            }
+
+            display.innerText = input.value.toUpperCase();
+            box.classList.remove('hidden');
+        }
+
+        // Kindness Quote Generator
+        function nextQuote() {
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            const quoteText = document.getElementById('quote-display');
+            quoteText.innerText = quotes[currentQuoteIndex];
+        }
+
+        // Web Audio Synthesizer for Relaxing Background Tone (No External File Needed)
+        function toggleAudio() {
+            const btnIcon = document.getElementById('audio-icon');
+            
+            if (!isPlaying) {
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioContext = new AudioContext();
+                    
+                    oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+
+                    oscillator.type = 'sine';
+                    oscillator.frequency.setValueAtTime(329.63, audioContext.currentTime); // E4 tone
+                    
+                    gainNode.gain.setValueAtTime(0.05, audioContext.currentTime); // Gentle volume
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    oscillator.start();
+                    isPlaying = true;
+
+                    btnIcon.className = 'fa-solid fa-volume-high text-brand-teal';
+                } catch (e) {
+                    console.log("Audio not supported or blocked.");
+                }
+            } else {
+                if (oscillator) {
+                    oscillator.stop();
+                    oscillator.disconnect();
+                }
+                isPlaying = false;
+                btnIcon.className = 'fa-solid fa-volume-xmark';
+            }
+        }
+    </script>
+</body>
+</html>
